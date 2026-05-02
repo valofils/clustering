@@ -49,3 +49,16 @@ print(f"Inertia at k=3 : {km.inertia_:.1f}")
 # 2. Change n_clusters to 2 and 5 — what happens to inertia?
 # 3. Try init='random' instead of 'k-means++' — run 5 times, notice variance
 # 4. Apply the same code to X_moons — does k-means work well? Why not?
+
+from sklearn.datasets import make_moons
+
+X_moons, _ = make_moons(n_samples=300, noise=0.07, random_state=42)
+km_moons = KMeans(n_clusters=2, n_init=10, random_state=42)
+km_moons.fit(X_moons)
+
+plt.figure()
+plt.scatter(X_moons[:, 0], X_moons[:, 1],
+            c=km_moons.labels_, cmap='tab10', s=25, alpha=0.7)
+plt.title("K-means on two moons — notice the failure")
+plt.savefig("02_kmeans_moons.png", dpi=150)
+plt.show()

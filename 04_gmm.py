@@ -58,3 +58,21 @@ print(f"Soft probabilities for first point: {proba[0].round(3)}")
 # 2. Print predict_proba(X[:5]) — each row should sum to 1.0
 # 3. Change covariance_type to 'spherical' or 'diag' — how do ellipses change?
 # 4. Use the BIC plot to verify n_components=3 is the best choice
+
+print("\nSoft probabilities for first 5 points:")
+print(proba[:5].round(3))
+print("\nRow sums (should all be 1.0):")
+print(proba[:5].sum(axis=1))
+
+# create a point exactly between two cluster centers
+midpoint = (gmm.means_[0] + gmm.means_[1]) / 2
+midpoint = midpoint.reshape(1, -1)
+print("\nMidpoint between cluster 0 and 1:")
+print(gmm.predict_proba(midpoint).round(3))
+
+# also try with higher cluster overlap
+X_overlap, _ = make_blobs(n_samples=300, centers=3,
+                           cluster_std=2.5, random_state=42)
+gmm2 = GaussianMixture(n_components=3, random_state=42).fit(X_overlap)
+print("\nSoft probabilities with overlapping clusters (std=2.5):")
+print(gmm2.predict_proba(X_overlap[:5]).round(3))

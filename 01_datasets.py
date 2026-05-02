@@ -4,12 +4,12 @@ import matplotlib.pyplot as plt
 from sklearn.datasets import make_blobs, make_moons, make_circles
 
 # --- generate datasets ---
-X_blobs, y_blobs = make_blobs(n_samples=200, centers=3,
-                               cluster_std=0.8, random_state=42)
-X_moons, _       = make_moons(n_samples=200, noise=0.07,
-                               random_state=42)
-X_circles, _     = make_circles(n_samples=200, noise=0.05,
-                                 factor=0.5, random_state=42)
+X_blobs, y_blobs = make_blobs(n_samples=300, centers=3,
+                               cluster_std=0.8, random_state=99)
+X_moons, _       = make_moons(n_samples=300, noise=0.07,
+                               random_state=99)
+X_circles, _     = make_circles(n_samples=300, noise=0.05,
+                                 factor=0.5, random_state=99)
 
 # --- plot ---
 fig, axes = plt.subplots(1, 3, figsize=(12, 4))

@@ -8,8 +8,8 @@ from sklearn.metrics import (silhouette_score,
                               adjusted_rand_score,
                               davies_bouldin_score)
 
-X, y_true = make_blobs(n_samples=300, centers=3,
-                        cluster_std=0.8, random_state=42)
+from sklearn.datasets import make_moons
+X, y_true = make_moons(n_samples=300, noise=0.07, random_state=42)
 
 # --- run all algorithms ---
 models = [
